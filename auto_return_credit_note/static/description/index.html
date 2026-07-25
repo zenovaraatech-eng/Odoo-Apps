@@ -1,0 +1,328 @@
+<div class="premium-app-wrapper">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .premium-app-wrapper {
+            font-family: 'Inter', sans-serif;
+            color: #334155;
+            background-color: #f8fafc;
+            padding-bottom: 40px;
+        }
+        .premium-app-wrapper h1, .premium-app-wrapper h2, .premium-app-wrapper h3, .premium-app-wrapper h4 {
+            margin-top: 0;
+            font-weight: 700;
+        }
+        
+        /* Hero Section */
+        .premium-hero {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+            border-radius: 0 0 40px 40px;
+            box-shadow: 0 20px 40px rgba(4, 120, 87, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .premium-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: pulseBg 15s infinite linear;
+        }
+        @keyframes pulseBg {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .hero-subtitle {
+            font-size: 1.25rem;
+            font-weight: 400;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+        }
+        .hero-banner {
+            max-width: 85%;
+            margin: 0 auto;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transform: translateY(30px);
+            border: 4px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+        .hero-banner:hover {
+            transform: translateY(20px) scale(1.02);
+        }
+
+        /* Container Settings */
+        .content-container {
+            max-width: 1100px;
+            margin: 80px auto 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            font-size: 2.25rem;
+            color: #1e293b;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #10b981, #047857);
+            margin: 15px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Problem Section */
+        .problem-box {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 80px;
+            border-top: 5px solid #10b981;
+        }
+        .problem-box p {
+            font-size: 1.1rem;
+            color: #475569;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border-color: #10b981;
+        }
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #047857;
+            margin-bottom: 20px;
+        }
+        .feature-title {
+            font-size: 1.25rem;
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+        .feature-text {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        /* How it works */
+        .step-container {
+            display: flex;
+            align-items: flex-start;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            gap: 30px;
+        }
+        .step-container:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        .step-text {
+            flex: 1;
+        }
+        .step-number {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            font-weight: 700;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .step-img-wrapper {
+            flex: 1;
+        }
+        .step-img-wrapper img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 1px solid #f1f5f9;
+        }
+
+        /* Footer / Support */
+        .premium-footer {
+            background: #0f172a;
+            color: white;
+            padding: 60px 20px;
+            border-radius: 30px;
+            text-align: center;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .footer-glow {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 100px;
+            background: #10b981;
+            filter: blur(80px);
+            opacity: 0.5;
+        }
+        .support-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 500px;
+            margin: 30px auto 0 auto;
+        }
+        .support-link {
+            color: #6ee7b7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        .support-link:hover {
+            color: #a7f3d0;
+        }
+        .contact-item {
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+    </style>
+
+    <!-- HERO -->
+    <div class="premium-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Auto Return Credit Note</h1>
+            <p class="hero-subtitle">Automate your financial workflows. Instantly generate flawless credit notes on every return.</p>
+            <img src="banner.png" alt="Auto Return Credit Note Banner" class="hero-banner" />
+        </div>
+    </div>
+
+    <div class="content-container">
+        
+        <!-- THE PROBLEM -->
+        <div class="problem-box">
+            <h2 class="section-title" style="margin-top:0;">Ditch Manual Accounting</h2>
+            <p>Manually verifying which quantities were returned and hunting down the exact prices they were originally billed for is tedious and error-prone. This module connects the dots completely behind the scenes. Whenever you validate a return delivery or receipt, Odoo will now instantly generate a mathematically accurate Credit Note or Vendor Refund.</p>
+        </div>
+
+        <!-- FEATURES -->
+        <h2 class="section-title">Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa fa-cogs"></i></div>
+                <h3 class="feature-title">Fully Automated</h3>
+                <p class="feature-text">Zero clicks required. Validating a standard return picking instantly triggers the generation of a draft refund document in accounting.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa fa-bullseye"></i></div>
+                <h3 class="feature-title">100% Price Accuracy</h3>
+                <p class="feature-text">Intelligently looks up the posted invoice associated with the original order line to apply the exact original unit prices and taxes.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa fa-pie-chart"></i></div>
+                <h3 class="feature-title">Partial Return Support</h3>
+                <p class="feature-text">Only returned 3 out of 10 items? No problem. The draft refund strictly conforms to the exact quantities actually received back.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa fa-shield"></i></div>
+                <h3 class="feature-title">Edge-Case Proof</h3>
+                <p class="feature-text">Engineered to track physical spatial location movements. It intelligently ignores "returns of returns" to avoid false refunds.</p>
+            </div>
+        </div>
+
+        <!-- HOW IT WORKS -->
+        <h2 class="section-title">See It In Action</h2>
+        
+        <div class="step-container">
+            <div class="step-text">
+                <span class="step-number">Step 1</span>
+                <h3>Validate a Return</h3>
+                <p style="color:#64748b; font-size: 1.05rem;">Simply process a return from a delivery order or a purchase receipt inside the Inventory module just like you normally would.</p>
+            </div>
+            <div class="step-img-wrapper">
+                <img src="validate-return.png" alt="Validate Return" />
+            </div>
+        </div>
+
+        <div class="step-container">
+            <div class="step-text">
+                <span class="step-number">Step 2</span>
+                <h3>Review Generated Credit Note</h3>
+                <p style="color:#64748b; font-size: 1.05rem;">Head to the Accounting app. You will find a perfectly calculated, ready-to-post draft Credit Note waiting for you, pre-filled with the right products and prices.</p>
+            </div>
+            <div class="step-img-wrapper">
+                <img src="credit-note.png" alt="Draft Credit Note" />
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="premium-footer">
+            <div class="footer-glow"></div>
+            <h2>Need Support or Customization?</h2>
+            <p style="color: #cbd5e1; max-width: 500px; margin: 10px auto 0 auto;">We stand by our code. Reach out for dedicated support, feature requests, or custom Odoo development.</p>
+            
+            <div class="support-card">
+                <div class="contact-item">
+                    <strong>Company:</strong> Zenovaraa
+                </div>
+                <div class="contact-item">
+                    <strong>Email:</strong> <a href="mailto:info@zenovaraa.com" class="support-link">info@zenovaraa.com</a>
+                </div>
+                <div class="contact-item">
+                    <strong>Website:</strong> <a href="https://zenovaraa.com" target="_blank" class="support-link">www.zenovaraa.com</a>
+                </div>
+                <div class="contact-item" style="margin-top: 15px;">
+                    <a href="https://www.linkedin.com/company/zenovaraa" target="_blank" class="support-link" style="display:inline-block; padding: 10px 20px; border: 1px solid #10b981; border-radius: 8px; margin-top: 10px;">Connect on LinkedIn</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
