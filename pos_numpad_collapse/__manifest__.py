@@ -25,7 +25,7 @@ Key behaviours
     'author': 'Zenovaraa',
     'license': 'OPL-1',
     'depends': ['point_of_sale'],
-    'data': [],
+    'images': ['static/description/cover-image.png'],
     'assets': {
         'point_of_sale._assets_pos': [
             'pos_numpad_collapse/static/src/**/*',
