@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!-- Patch ControlButtons to add the toggle button -->
+    <t t-name="pos_numpad_collapse.ControlButtons"
+       t-inherit="point_of_sale.ControlButtons"
+       t-inherit-mode="extension">
+        <!-- Insert before the "Actions" button -->
+        <xpath expr="//button[hasclass('more-btn')]" position="before">
+            <button
+                t-if="!props.showRemainingButtons and !currentOrder?.is_empty() and currentOrder?.uiState.selected_orderline_uuid and pos.numpadToggleState"
+                t-attf-class="{{ buttonClass }} flex-shrink-0 d-flex align-items-center justify-content-center"
+                style="aspect-ratio: 1/1;"
+                t-att-title="pos.numpadToggleState.isNumpadCollapsed ? 'Show numpad' : 'Hide numpad'"
+                t-on-click="toggleNumpad"
+            >
+                <i t-attf-class="fa fa-chevron-{{ pos.numpadToggleState.isNumpadCollapsed ? 'up' : 'down' }}" 
+                   style="transition: transform 0.2s ease; font-size: 1.1rem;" />
+            </button>
+        </xpath>
+    </t>
+
+    <!-- Patch ProductScreen to hide Numpad -->
+    <t t-name="pos_numpad_collapse.ProductScreen"
+       t-inherit="point_of_sale.ProductScreen"
+       t-inherit-mode="extension">
+        <!-- 
+            Use position="attributes" instead of "replace" to modify the Numpad component.
+            We dynamically swap its class to 'd-none' when collapsed.
+        -->
+        <xpath expr="//Numpad" position="attributes">
+            <attribute name="class">dynamicNumpadClass</attribute>
+        </xpath>
+    </t>
+
+</templates>
