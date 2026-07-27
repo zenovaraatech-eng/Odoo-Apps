@@ -13,7 +13,7 @@
     'author': 'Zenovaraa',
     'website': 'https://www.odoo.com',
     'depends': ['stock', 'sale_stock', 'purchase_stock', 'account'],
-    'data': [],
+    'images': ['static/description/cover-image.png'],
     'installable': True,
     'application': True,
     'auto_install': False,
