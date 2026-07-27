@@ -21,6 +21,9 @@ for next time.
     'category': 'Website/Portal',
     'author': 'Zenovaraa',
     'license': 'OPL-1',
+    # Cover image (thumbnail) on the Apps Store listing. The store reads it from this key
+    # only -- an image sitting in static/description/ is never picked up on its own.
+    'images': ['static/description/zen_portal_column_toggle_banner.png'],
     'depends': ['portal'],
     'assets': {
         'web.assets_frontend': [
