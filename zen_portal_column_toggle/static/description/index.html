@@ -23,7 +23,10 @@
 
     Consequences baked into the markup below:
       * No box-sizing, so a percentage width and padding never sit on the same element.
-      * No flex gaps, so multi-column blocks are <table> based (border-spacing is the gutter).
+      * No flex gaps AND no media queries (a <style> block does not survive), so multi-column
+        blocks are inline-block cards with a px width plus max-width:100%. They sit side by side
+        while they fit and stack once they do not. The gutter is a margin on the INNER card, so
+        it comes out of the width instead of pushing the card past 100% on a phone.
       * No `clear`, so floats are avoided entirely.
       * <details open> cannot survive either (fields.Html strips the attribute, store and
         backend alike), so nothing important hides behind a closed section: Overview and
@@ -34,10 +37,10 @@
 
     <!-- ============ HERO ============ -->
     <div style="background-color:#0F1F2E;background-image:linear-gradient(135deg,#0F1F2E 0%,#15303F 100%);
-                border-radius:20px;padding:60px 32px;text-align:center">
+                border-radius:20px;padding:52px 20px;text-align:center">
         <div style="max-width:760px;margin:0 auto">
             <img src="icon.png" alt="Portal Column Toggle icon" style="width:64px;height:64px;border-radius:16px;margin:0 0 18px 0">
-            <h1 style="font-family:'Space Grotesk',Inter,sans-serif;color:#ffffff;font-size:2.6rem;line-height:1.15;
+            <h1 style="font-family:'Space Grotesk',Inter,sans-serif;color:#ffffff;font-size:2.3rem;line-height:1.15;
                        font-weight:700;letter-spacing:-.5px;margin:0 0 16px 0">Portal Column Toggle</h1>
             <p style="color:#cbd5e1;font-size:1.15rem;line-height:1.6;margin:0 auto 22px auto;
                       max-width:620px">Let portal users show only the columns they actually need.</p>
@@ -54,7 +57,7 @@
 
     <div style="background-color:#ffffff;border:1px solid #e7e0d3;
                 border-left-width:4px;border-left-style:solid;border-left-color:#0D7377;
-                border-radius:14px;padding:28px 32px;margin:0 0 8px 0">
+                border-radius:14px;padding:26px 22px;margin:0 0 8px 0">
         <h2 style="font-family:'Space Grotesk',Inter,sans-serif;font-size:1.6rem;font-weight:700;color:#181816;margin:0 0 12px 0">
             Portal Tables Show Everything, Always</h2>
         <p style="color:#44403C;font-size:1.05rem;line-height:1.7;margin:0">
@@ -63,10 +66,14 @@
 
     <h2 style="font-family:'Space Grotesk',Inter,sans-serif;font-size:1.9rem;font-weight:700;color:#181816;text-align:center;margin:44px 0 20px 0">Features</h2>
 
-    <!-- feature grid: a table, because flex gaps do not survive the store sanitizer -->
-    <table style="width:100%;table-layout:fixed;border-collapse:separate;border-spacing:10px 10px">
-        <tr>
-            <td style="width:33.33%;vertical-align:top;background-color:#ffffff;border:1px solid #e7e0d3;border-radius:16px;padding:24px">
+    <!-- fluid card grid: inline-block + max-width:100% so cards stack on narrow screens.
+         Media queries do not survive the Apps Store sanitizer, so responsiveness has to come
+         from the box model itself. The horizontal gutter lives on the inner card, never as a
+         margin on the inline-block, which would push it past 100% and scroll the page. -->
+    <div style="text-align:center;font-size:0">
+
+        <div style="display:inline-block;vertical-align:top;width:352px;max-width:100%;text-align:left;font-size:1rem">
+            <div style="background-color:#ffffff;border:1px solid #e7e0d3;border-radius:16px;padding:24px;margin:0 6px 12px 6px">
                 <div style="width:46px;height:46px;line-height:46px;text-align:center;
                             background-color:#0D7377;background-image:linear-gradient(135deg,#0D7377,#16A8A8);border-radius:13px;font-size:22px;color:#ffffff">&#9881;&#65039;</div>
                 <h3 style="font-family:'Space Grotesk',Inter,sans-serif;font-size:1.15rem;font-weight:700;color:#181816;margin:16px 0 8px 0">
@@ -76,8 +83,11 @@
                     <li>One click opens a tick-list of that table's columns.</li>
                     <li>Columns appear and disappear instantly, with no page reload.</li>
                 </ul>
-            </td>
-            <td style="width:33.33%;vertical-align:top;background-color:#ffffff;border:1px solid #e7e0d3;border-radius:16px;padding:24px">
+            </div>
+        </div>
+
+        <div style="display:inline-block;vertical-align:top;width:352px;max-width:100%;text-align:left;font-size:1rem">
+            <div style="background-color:#ffffff;border:1px solid #e7e0d3;border-radius:16px;padding:24px;margin:0 6px 12px 6px">
                 <div style="width:46px;height:46px;line-height:46px;text-align:center;
                             background-color:#0D7377;background-image:linear-gradient(135deg,#0D7377,#16A8A8);border-radius:13px;font-size:22px;color:#ffffff">&#128290;</div>
                 <h3 style="font-family:'Space Grotesk',Inter,sans-serif;font-size:1.15rem;font-weight:700;color:#181816;margin:16px 0 8px 0">
@@ -87,8 +97,11 @@
                     <li><em>Reset to default</em> brings every column back in one click.</li>
                     <li>Nobody gets stuck wondering where a column went.</li>
                 </ul>
-            </td>
-            <td style="width:33.33%;vertical-align:top;background-color:#ffffff;border:1px solid #e7e0d3;border-radius:16px;padding:24px">
+            </div>
+        </div>
+
+        <div style="display:inline-block;vertical-align:top;width:352px;max-width:100%;text-align:left;font-size:1rem">
+            <div style="background-color:#ffffff;border:1px solid #e7e0d3;border-radius:16px;padding:24px;margin:0 6px 12px 6px">
                 <div style="width:46px;height:46px;line-height:46px;text-align:center;
                             background-color:#0D7377;background-image:linear-gradient(135deg,#0D7377,#16A8A8);border-radius:13px;font-size:22px;color:#ffffff">&#128190;</div>
                 <h3 style="font-family:'Space Grotesk',Inter,sans-serif;font-size:1.15rem;font-weight:700;color:#181816;margin:16px 0 8px 0">
@@ -98,10 +111,11 @@
                     <li>My Invoices can stay trimmed while My Orders stays full.</li>
                     <li>If the table's columns change, the saved choice steps aside safely.</li>
                 </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="width:33.33%;vertical-align:top;background-color:#ffffff;border:1px solid #e7e0d3;border-radius:16px;padding:24px">
+            </div>
+        </div>
+
+        <div style="display:inline-block;vertical-align:top;width:352px;max-width:100%;text-align:left;font-size:1rem">
+            <div style="background-color:#ffffff;border:1px solid #e7e0d3;border-radius:16px;padding:24px;margin:0 6px 12px 6px">
                 <div style="width:46px;height:46px;line-height:46px;text-align:center;
                             background-color:#0D7377;background-image:linear-gradient(135deg,#0D7377,#16A8A8);border-radius:13px;font-size:22px;color:#ffffff">&#129513;</div>
                 <h3 style="font-family:'Space Grotesk',Inter,sans-serif;font-size:1.15rem;font-weight:700;color:#181816;margin:16px 0 8px 0">
@@ -111,8 +125,11 @@
                     <li>Grouped lists work too. Tasks grouped by project keep their group headings aligned.</li>
                     <li>No per-model setup, no template overrides to maintain.</li>
                 </ul>
-            </td>
-            <td style="width:33.33%;vertical-align:top;background-color:#ffffff;border:1px solid #e7e0d3;border-radius:16px;padding:24px">
+            </div>
+        </div>
+
+        <div style="display:inline-block;vertical-align:top;width:352px;max-width:100%;text-align:left;font-size:1rem">
+            <div style="background-color:#ffffff;border:1px solid #e7e0d3;border-radius:16px;padding:24px;margin:0 6px 12px 6px">
                 <div style="width:46px;height:46px;line-height:46px;text-align:center;
                             background-color:#0D7377;background-image:linear-gradient(135deg,#0D7377,#16A8A8);border-radius:13px;font-size:22px;color:#ffffff">&#128274;</div>
                 <h3 style="font-family:'Space Grotesk',Inter,sans-serif;font-size:1.15rem;font-weight:700;color:#181816;margin:16px 0 8px 0">
@@ -122,14 +139,14 @@
                     <li>One customer's layout never affects another's.</li>
                     <li>Hiding is display-only, so access rights and documents are untouched.</li>
                 </ul>
-            </td>
-            <td style="width:33.33%"></td>
-        </tr>
-    </table>
+            </div>
+        </div>
+
+    </div>
 
     <h2 style="font-family:'Space Grotesk',Inter,sans-serif;font-size:1.9rem;font-weight:700;color:#181816;text-align:center;margin:52px 0 26px 0">See It In Action</h2>
 
-    <div style="background-color:#ffffff;border:1px solid #e7e0d3;border-radius:16px;padding:26px;margin:0 0 26px 0">
+    <div style="background-color:#ffffff;border:1px solid #e7e0d3;border-radius:16px;padding:22px;margin:0 0 26px 0">
         <span style="display:inline-block;background-color:#0D7377;background-image:linear-gradient(135deg,#0D7377,#16A8A8);color:#ffffff;font-size:.75rem;
                      font-weight:700;letter-spacing:.6px;text-transform:uppercase;
                      padding:5px 14px;border-radius:50px">Step 1</span>
@@ -139,7 +156,7 @@
              style="width:100%;height:auto;display:block;border:1px solid #e7e0d3;border-radius:12px">
     </div>
 
-    <div style="background-color:#ffffff;border:1px solid #e7e0d3;border-radius:16px;padding:26px;margin:0 0 26px 0">
+    <div style="background-color:#ffffff;border:1px solid #e7e0d3;border-radius:16px;padding:22px;margin:0 0 26px 0">
         <span style="display:inline-block;background-color:#0D7377;background-image:linear-gradient(135deg,#0D7377,#16A8A8);color:#ffffff;font-size:.75rem;
                      font-weight:700;letter-spacing:.6px;text-transform:uppercase;
                      padding:5px 14px;border-radius:50px">Step 2</span>
@@ -149,7 +166,7 @@
              style="width:100%;height:auto;display:block;border:1px solid #e7e0d3;border-radius:12px">
     </div>
 
-    <div style="background-color:#ffffff;border:1px solid #e7e0d3;border-radius:16px;padding:26px;margin:0 0 26px 0">
+    <div style="background-color:#ffffff;border:1px solid #e7e0d3;border-radius:16px;padding:22px;margin:0 0 26px 0">
         <span style="display:inline-block;background-color:#0D7377;background-image:linear-gradient(135deg,#0D7377,#16A8A8);color:#ffffff;font-size:.75rem;
                      font-weight:700;letter-spacing:.6px;text-transform:uppercase;
                      padding:5px 14px;border-radius:50px">Step 3</span>
@@ -160,12 +177,12 @@
     </div>
 
     <h2 style="font-family:'Space Grotesk',Inter,sans-serif;font-size:1.9rem;font-weight:700;color:#181816;text-align:center;margin:52px 0 26px 0">Technical Specifications</h2>
-    <table style="width:100%;border-collapse:collapse;font-size:.97rem;background-color:#ffffff;border:1px solid #e7e0d3;border-radius:14px">
-        <tr><td style="padding:12px 20px;color:#181816;font-weight:700;width:220px">Availability</td><td style="padding:12px 20px;color:#44403C">Odoo Online, Odoo.sh, On-Premise</td></tr>
-        <tr><td style="padding:12px 20px;color:#181816;font-weight:700;border-top:1px solid #e7e0d3">Odoo Version</td><td style="padding:12px 20px;color:#44403C;border-top:1px solid #e7e0d3">19.0, Community &amp; Enterprise</td></tr>
-        <tr><td style="padding:12px 20px;color:#181816;font-weight:700;border-top:1px solid #e7e0d3">Dependencies</td><td style="padding:12px 20px;color:#44403C;border-top:1px solid #e7e0d3">portal</td></tr>
-        <tr><td style="padding:12px 20px;color:#181816;font-weight:700;border-top:1px solid #e7e0d3">Technical Name</td><td style="padding:12px 20px;color:#44403C;border-top:1px solid #e7e0d3">zen_portal_column_toggle</td></tr>
-        <tr><td style="padding:12px 20px;color:#181816;font-weight:700;border-top:1px solid #e7e0d3">License</td><td style="padding:12px 20px;color:#44403C;border-top:1px solid #e7e0d3">OPL-1 (Odoo Proprietary License v1.0)</td></tr>
+    <table style="width:100%;border-collapse:collapse;font-size:.93rem;background-color:#ffffff;border:1px solid #e7e0d3;border-radius:14px">
+        <tr><td style="padding:12px 13px;color:#181816;font-weight:700;width:40%">Availability</td><td style="padding:12px 13px;color:#44403C">Odoo Online, Odoo.sh, On-Premise</td></tr>
+        <tr><td style="padding:12px 13px;color:#181816;font-weight:700;border-top:1px solid #e7e0d3">Odoo Version</td><td style="padding:12px 13px;color:#44403C;border-top:1px solid #e7e0d3">19.0, Community &amp; Enterprise</td></tr>
+        <tr><td style="padding:12px 13px;color:#181816;font-weight:700;border-top:1px solid #e7e0d3">Dependencies</td><td style="padding:12px 13px;color:#44403C;border-top:1px solid #e7e0d3">portal</td></tr>
+        <tr><td style="padding:12px 13px;color:#181816;font-weight:700;border-top:1px solid #e7e0d3">Technical Name</td><td style="padding:12px 13px;color:#44403C;border-top:1px solid #e7e0d3">zen_portal_column_toggle</td></tr>
+        <tr><td style="padding:12px 13px;color:#181816;font-weight:700;border-top:1px solid #e7e0d3">License</td><td style="padding:12px 13px;color:#44403C;border-top:1px solid #e7e0d3">OPL-1 (Odoo Proprietary License v1.0)</td></tr>
     </table>
 
     <!-- ============ FAQ ============ -->
@@ -174,22 +191,22 @@
             &#10068;&nbsp; FAQ</h2>
     </div>
 
-    <details style="background-color:#ffffff;border:1px solid #e7e0d3;border-radius:14px;padding:20px 26px;margin:0 0 14px 0">
+    <details style="background-color:#ffffff;border:1px solid #e7e0d3;border-radius:14px;padding:18px 22px;margin:0 0 14px 0">
         <summary style="font-size:1.05rem;font-weight:700;color:#181816">Does a customer's column choice follow them to another device or browser?</summary>
         <p style="color:#5c574f;font-size:1rem;line-height:1.7;margin:14px 0 0 0">No. The choice lives in that browser's local storage, so it is per browser and per device. Logging in from a phone or a different browser starts from the default columns again, and clearing site data resets it. This is deliberate: nothing about the visitor is written to your database.</p>
     </details>
 
-    <details style="background-color:#ffffff;border:1px solid #e7e0d3;border-radius:14px;padding:20px 26px;margin:0 0 14px 0">
+    <details style="background-color:#ffffff;border:1px solid #e7e0d3;border-radius:14px;padding:18px 22px;margin:0 0 14px 0">
         <summary style="font-size:1.05rem;font-weight:700;color:#181816">Does it work on portal pages added by other apps?</summary>
         <p style="color:#5c574f;font-size:1rem;line-height:1.7;margin:14px 0 0 0">Yes. The script does not target specific models; it picks up any table with a header row and at least two columns on a <code>/my/&hellip;</code> page. Helpdesk tickets, subscriptions, repairs or a custom portal list all get the gear with no extra configuration, and grouped lists such as Tasks grouped by project are handled too.</p>
     </details>
 
-    <details style="background-color:#ffffff;border:1px solid #e7e0d3;border-radius:14px;padding:20px 26px;margin:0 0 14px 0">
+    <details style="background-color:#ffffff;border:1px solid #e7e0d3;border-radius:14px;padding:18px 22px;margin:0 0 14px 0">
         <summary style="font-size:1.05rem;font-weight:700;color:#181816">Does hiding a column change the PDF, the download, or what the customer can access?</summary>
         <p style="color:#5c574f;font-size:1rem;line-height:1.7;margin:14px 0 0 0">No. Hiding is display-only on the HTML table. Printed reports, downloaded documents and record access rules are untouched. This app grants and removes nothing in terms of permissions.</p>
     </details>
 
-    <details style="background-color:#ffffff;border:1px solid #e7e0d3;border-radius:14px;padding:20px 26px;margin:0 0 14px 0">
+    <details style="background-color:#ffffff;border:1px solid #e7e0d3;border-radius:14px;padding:18px 22px;margin:0 0 14px 0">
         <summary style="font-size:1.05rem;font-weight:700;color:#181816">What happens when the module is uninstalled?</summary>
         <p style="color:#5c574f;font-size:1rem;line-height:1.7;margin:14px 0 0 0">The assets stop loading and the portal returns to its standard tables immediately. No database records are created by this app, so there is nothing to clean up. The leftover keys in a visitor's browser are inert and are dropped when they clear site data.</p>
     </details>
@@ -200,38 +217,42 @@
             &#127911;&nbsp; About Us</h2>
     </div>
 
-    <div style="background-color:#ffffff;border:1px solid #e7e0d3;border-radius:16px;padding:30px 32px">
+    <div style="background-color:#ffffff;border:1px solid #e7e0d3;border-radius:16px;padding:28px 24px">
         <p style="color:#44403C;font-size:1.05rem;line-height:1.75;margin:0 0 18px 0">
             Zenovaraa builds Odoo apps and implements Odoo for companies that want the system to fit the way they already work, rather than the other way round. We spend our days inside real Odoo databases, which is where apps like this one come from: a small friction someone hit on a Tuesday, fixed properly and packaged so nobody else has to hit it.</p>
         <p style="color:#44403C;font-size:1.05rem;line-height:1.75;margin:0 0 20px 0">
             Every app we publish is written against a clean install of the Odoo version it targets, kept free of unnecessary dependencies, and documented so your team can read the code before trusting it. If you find a bug, tell us and we will fix it.</p>
-        <table style="width:100%;table-layout:fixed;border-collapse:separate;border-spacing:9px 9px">
-            <tr>
-                <td style="width:33.33%;vertical-align:top;background-color:#F5F0E8;border:1px solid #e7e0d3;border-radius:13px;padding:20px 22px">
+        <div style="text-align:center;font-size:0">
+            <div style="display:inline-block;vertical-align:top;width:326px;max-width:100%;text-align:left;font-size:1rem">
+                <div style="background-color:#F5F0E8;border:1px solid #e7e0d3;border-radius:13px;padding:20px 22px;margin:0 5px 10px 5px">
                     <h3 style="font-family:'Space Grotesk',Inter,sans-serif;font-size:1.05rem;font-weight:700;color:#181816;margin:0 0 8px 0">Odoo App Development</h3>
                     <p style="color:#5c574f;font-size:.96rem;line-height:1.6;margin:0">Purpose-built modules for the gaps between what Odoo ships and what your business actually does.</p>
-                </td>
-                <td style="width:33.33%;vertical-align:top;background-color:#F5F0E8;border:1px solid #e7e0d3;border-radius:13px;padding:20px 22px">
+                </div>
+            </div>
+            <div style="display:inline-block;vertical-align:top;width:326px;max-width:100%;text-align:left;font-size:1rem">
+                <div style="background-color:#F5F0E8;border:1px solid #e7e0d3;border-radius:13px;padding:20px 22px;margin:0 5px 10px 5px">
                     <h3 style="font-family:'Space Grotesk',Inter,sans-serif;font-size:1.05rem;font-weight:700;color:#181816;margin:0 0 8px 0">Implementation &amp; Migration</h3>
                     <p style="color:#5c574f;font-size:.96rem;line-height:1.6;margin:0">Getting you onto Odoo, or onto a newer version of it, without losing the customisations you depend on.</p>
-                </td>
-                <td style="width:33.33%;vertical-align:top;background-color:#F5F0E8;border:1px solid #e7e0d3;border-radius:13px;padding:20px 22px">
+                </div>
+            </div>
+            <div style="display:inline-block;vertical-align:top;width:326px;max-width:100%;text-align:left;font-size:1rem">
+                <div style="background-color:#F5F0E8;border:1px solid #e7e0d3;border-radius:13px;padding:20px 22px;margin:0 5px 10px 5px">
                     <h3 style="font-family:'Space Grotesk',Inter,sans-serif;font-size:1.05rem;font-weight:700;color:#181816;margin:0 0 8px 0">Support &amp; Customisation</h3>
                     <p style="color:#5c574f;font-size:.96rem;line-height:1.6;margin:0">Ongoing help with the apps we publish, plus custom work when an app needs to bend to your process.</p>
-                </td>
-            </tr>
-        </table>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div style="background-color:#0F1F2E;background-image:linear-gradient(135deg,#0F1F2E 0%,#15303F 100%);border-radius:20px;
-                padding:52px 32px;text-align:center;margin:26px 0 40px 0">
+                padding:48px 22px;text-align:center;margin:26px 0 40px 0">
         <h2 style="font-family:'Space Grotesk',Inter,sans-serif;color:#ffffff;font-size:1.9rem;font-weight:700;margin:0 0 12px 0">
             Need Support or Customization?</h2>
         <p style="color:#cbd5e1;font-size:1.05rem;line-height:1.6;max-width:560px;
                   margin:0 auto 28px auto">
             We stand by our code. Tell us what you are trying to do and we will tell you honestly whether this app covers it, what it would take to get there, or where a different approach would serve you better.</p>
-        <div style="display:inline-block;text-align:left;background-color:rgba(255,255,255,.05);
-                    border:1px solid #2a3f4f;border-radius:14px;padding:24px 30px">
+        <div style="max-width:520px;margin:0 auto;text-align:left;background-color:rgba(255,255,255,.05);
+                    border:1px solid #2a3f4f;border-radius:14px;padding:24px 22px">
             <div style="color:#e2e8f0;font-size:1rem;margin-bottom:10px">
                 <strong style="color:#ffffff">Company:</strong> Zenovaraa</div>
             <div style="color:#e2e8f0;font-size:1rem;margin-bottom:10px">
