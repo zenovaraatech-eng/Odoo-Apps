@@ -1,0 +1,25 @@
+// Required Field Indicator — required-field indicator styling.
+// Kept intentionally simple and class-based so it survives Odoo web framework
+// changes: it only relies on the long-stable `.o_required_modifier` class and on
+// the `.o_zen_required` marker class added by required_field_indicator.js.
+
+.o_form_view {
+    // Red asterisk appended to the label of a required field.
+    label.o_zen_required::after {
+        content: " *";
+        color: var(--zen-required-color, #d9534f);
+        font-weight: 700;
+    }
+
+    // Subtle left marker on the required input widget itself, so the field is
+    // identifiable even where the label is not rendered (e.g. inline lists).
+    .o_field_widget.o_required_modifier {
+        .o_input,
+        input.o_input,
+        textarea.o_input,
+        .o_input_dropdown,
+        .o_field_many2one_selection {
+            box-shadow: inset 2px 0 0 0 var(--zen-required-color, #d9534f);
+        }
+    }
+}
