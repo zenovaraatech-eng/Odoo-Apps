@@ -1,0 +1,68 @@
+// Portal Column Toggle: styling for the gear column-toggle control.
+
+// Full-width bar above the table so the gear sits at the top-right.
+.zen-col-toggle-bar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0.5rem;
+}
+
+.zen-col-toggle {
+    position: relative;
+
+    .zen-col-toggle-btn {
+        position: relative;
+        cursor: pointer;
+        line-height: 1;
+    }
+
+    // Small "N hidden" count bubble on the gear.
+    .zen-col-toggle-badge {
+        position: absolute;
+        top: -0.4rem;
+        right: -0.4rem;
+        font-size: 0.65rem;
+        padding: 0.15em 0.4em;
+        pointer-events: none;
+    }
+
+    .zen-col-toggle-menu {
+        position: absolute;
+        right: 0;
+        z-index: 1030;
+        min-width: 12rem;
+        max-height: 20rem;
+        overflow-y: auto;
+        margin-top: 0.25rem;
+        padding: 0.5rem 0.75rem;
+        background: var(--bs-body-bg, #fff);
+        border: 1px solid var(--bs-border-color, #dee2e6);
+        border-radius: 0.375rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        text-align: left;
+
+        &[hidden] {
+            display: none;
+        }
+
+        .zen-col-toggle-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: var(--bs-secondary-color, #6c757d);
+            margin-bottom: 0.4rem;
+        }
+
+        .form-check {
+            margin-bottom: 0.25rem;
+            white-space: nowrap;
+        }
+
+        .zen-col-toggle-reset {
+            margin-top: 0.4rem;
+            padding-top: 0.4rem;
+            border-top: 1px solid var(--bs-border-color, #dee2e6);
+        }
+    }
+}
